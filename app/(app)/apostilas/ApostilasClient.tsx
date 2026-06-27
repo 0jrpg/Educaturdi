@@ -1,10 +1,12 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { IconSearch, IconDownload, IconUpload, IconX } from '@tabler/icons-react';
 import Badge from '@/components/Badge';
 import { useToast } from '@/components/Toast';
-import type { Apostila, Disciplina } from '@/types/database';
+import NovaApostilaModal from '@/components/forms/NovaApostilaModal';
+import type { Apostila, Disciplina, Turma } from '@/types/database';
 
 function discCor(disciplinas: Disciplina[], nome: string) {
   return disciplinas.find(d => d.nome === nome)?.cor ?? '#64748b';
@@ -14,11 +16,13 @@ function fmtData(iso: string) {
 }
 
 export default function ApostilasClient({
-  apostilas, disciplinas, isAluno,
-}: { apostilas: Apostila[]; disciplinas: Disciplina[]; isAluno: boolean }) {
+  apostilas, disciplinas, turmas, isAluno, professorId,
+}: { apostilas: Apostila[]; disciplinas: Disciplina[]; turmas: Turma[]; isAluno: boolean; professorId: string }) {
+  const router = useRouter();
   const [busca, setBusca] = useState('');
   const [discFiltro, setDiscFiltro] = useState('');
   const [selecionada, setSelecionada] = useState<Apostila | null>(null);
+  const [modalNova, setModalNova] = useState(false);
   const showToast = useToast();
 
   const discs = [...new Set(apostilas.map(a => a.disciplina))].sort();
@@ -46,7 +50,7 @@ export default function ApostilasClient({
       <div className="page-header">
         <div><h1>Apostilas & Materiais</h1><p>Materiais didáticos em PDF</p></div>
         {!isAluno && (
-          <button className="btn btn-primary" onClick={() => showToast('Envie apostilas pelo Supabase Storage + Table Editor.', 'warning')}>
+          <button className="btn btn-primary" onClick={() => setModalNova(true)}>
             <IconUpload size={16} /> Enviar Apostila
           </button>
         )}
@@ -121,6 +125,16 @@ export default function ApostilasClient({
             </div>
           </div>
         </div>
+      )}
+
+      {!isAluno && (
+        <NovaApostilaModal
+          open={modalNova}
+          onClose={() => setModalNova(false)}
+          disciplinas={disciplinas}
+          turmas={turmas}
+          professorId={professorId}
+        />
       )}
     </div>
   );
