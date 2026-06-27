@@ -282,9 +282,40 @@ insert into public.turmas (id, nome, nivel, periodo, sala, responsavel) values
   ('1C','1º Ano C','Ensino Médio','Vespertino','05','Prof. Carla Mendes');
 
 -- ════════════════════════════════════════════════════════════
+--  STORAGE — bucket para upload de PDFs (apostilas)
+-- ════════════════════════════════════════════════════════════
+insert into storage.buckets (id, name, public)
+values ('apostilas', 'apostilas', true)
+on conflict (id) do nothing;
+
+-- Qualquer usuário autenticado pode ler os arquivos (bucket público pra leitura)
+create policy "Leitura pública de apostilas"
+  on storage.objects for select
+  using (bucket_id = 'apostilas');
+
+-- Só professor/admin pode enviar arquivos
+create policy "Professor/Admin envia apostilas"
+  on storage.objects for insert to authenticated
+  with check (
+    bucket_id = 'apostilas'
+    and exists (select 1 from public.profiles where id = auth.uid() and tipo in ('professor','admin'))
+  );
+
+-- Só professor/admin pode remover arquivos
+create policy "Professor/Admin remove apostilas"
+  on storage.objects for delete to authenticated
+  using (
+    bucket_id = 'apostilas'
+    and exists (select 1 from public.profiles where id = auth.uid() and tipo in ('professor','admin'))
+  );
+
+-- ════════════════════════════════════════════════════════════
 --  PRONTO! Depois de rodar este script:
 --  1. Vá em Authentication → Users → Add user (crie os logins)
 --  2. Em "User Metadata" ao criar, adicione JSON:
 --     {"nome": "Ana Turdi", "tipo": "aluno", "turma": "3B"}
 --  3. O trigger criará o profile automaticamente.
+--  4. Tudo o resto (atividades, apostilas, notas, comunicados,
+--     horários) já pode ser feito direto pelo site EducaTurdi,
+--     fazendo login como professor ou admin.
 -- ════════════════════════════════════════════════════════════
