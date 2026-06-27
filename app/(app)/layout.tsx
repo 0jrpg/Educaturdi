@@ -3,6 +3,8 @@ import { createClient } from '@/lib/supabase/server';
 import AppShell from '@/components/AppShell';
 import type { Profile } from '@/types/database';
 
+export const dynamic = 'force-dynamic';
+
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
   const supabase = createClient();
   const { data: { user } } = await supabase.auth.getUser();
