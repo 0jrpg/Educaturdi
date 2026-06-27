@@ -7,7 +7,6 @@ import { IconSchool, IconMail, IconLock, IconEye, IconEyeOff, IconArrowRight, Ic
 
 export default function LoginPage() {
   const router = useRouter();
-  const supabase = createClient();
 
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
@@ -25,6 +24,7 @@ export default function LoginPage() {
     }
 
     setCarregando(true);
+    const supabase = createClient();
     const { error } = await supabase.auth.signInWithPassword({ email, password: senha });
     setCarregando(false);
 
