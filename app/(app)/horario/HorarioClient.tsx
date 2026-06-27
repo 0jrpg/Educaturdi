@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import { IconPlus } from '@tabler/icons-react';
+import NovaAulaModal from '@/components/forms/NovaAulaModal';
 import type { Horario, Disciplina } from '@/types/database';
 
 function discCor(disciplinas: Disciplina[], nome: string) {
@@ -14,7 +16,7 @@ function GradeSemanal({ horarios, disciplinas }: { horarios: Horario[]; discipli
   const diaHoje = DIAS_NOME[new Date().getDay()];
 
   if (!horarios.length) {
-    return <p style={{ color: 'var(--s400)', padding: '1rem' }}>Horário não cadastrado para esta turma. Lance pelo Supabase Table Editor.</p>;
+    return <p style={{ color: 'var(--s400)', padding: '1rem' }}>Horário não cadastrado para esta turma ainda.</p>;
   }
 
   const diasComAula = DIAS_ORDEM.filter(d => horarios.some(h => h.dia === d));
@@ -78,10 +80,18 @@ export default function HorarioClient({
   disciplinas: Disciplina[];
 }) {
   const [turmaSelecionada, setTurmaSelecionada] = useState(isAluno ? turmaAtual : turmas[0]);
+  const [modalNova, setModalNova] = useState(false);
 
   return (
     <div>
-      <div className="page-header"><div><h1>Grade Horária</h1><p>{isAluno ? `Turma ${turmaAtual}` : 'Selecione a turma'} · 2026</p></div></div>
+      <div className="page-header">
+        <div><h1>Grade Horária</h1><p>{isAluno ? `Turma ${turmaAtual}` : 'Selecione a turma'} · 2026</p></div>
+        {!isAluno && (
+          <button className="btn btn-primary" onClick={() => setModalNova(true)}>
+            <IconPlus size={16} /> Adicionar Aula
+          </button>
+        )}
+      </div>
       {!isAluno && (
         <div className="tabs">
           {turmas.map((t) => (
@@ -90,6 +100,10 @@ export default function HorarioClient({
         </div>
       )}
       <GradeSemanal horarios={horariosPorTurma[turmaSelecionada] ?? []} disciplinas={disciplinas} />
+
+      {!isAluno && (
+        <NovaAulaModal open={modalNova} onClose={() => setModalNova(false)} turmas={turmas} disciplinas={disciplinas} />
+      )}
     </div>
   );
 }
