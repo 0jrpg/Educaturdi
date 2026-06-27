@@ -4,8 +4,19 @@ Site escolar fictício, sem fins comerciais — feito só por diversão.
 
 ## Stack
 - **Next.js 14** (App Router, TypeScript)
-- **Supabase** (Auth + Postgres + Row Level Security)
+- **Supabase** (Auth + Postgres + Storage + Row Level Security)
 - **Vercel** (hospedagem)
+
+## O que pode ser feito direto pelo site (sem abrir o Supabase)
+
+- ✅ Criar/editar/excluir **usuários** (alunos, professores, admins) — tela de Usuários
+- ✅ Criar **atividades** — botão "Nova Atividade"
+- ✅ Enviar **apostilas em PDF** (upload real, arrastando o arquivo) — botão "Enviar Apostila"
+- ✅ Lançar **notas** por turma/aluno — botão "Lançar Notas"
+- ✅ Publicar **comunicados** — botão "Novo Comunicado"
+- ✅ Montar a **grade horária** — botão "Adicionar Aula"
+
+O Supabase Dashboard só é necessário para a configuração inicial (rodar o `schema.sql` uma vez).
 
 ---
 
@@ -14,54 +25,30 @@ Site escolar fictício, sem fins comerciais — feito só por diversão.
 1. Acesse seu projeto em [supabase.com](https://supabase.com).
 2. Vá em **SQL Editor → New Query**.
 3. Cole todo o conteúdo do arquivo `supabase/schema.sql` e clique em **Run**.
-   - Isso cria todas as tabelas, políticas de segurança (RLS) e alguns dados iniciais (turmas e disciplinas).
+   - Isso cria todas as tabelas, políticas de segurança (RLS), o bucket de Storage para PDFs, e dados iniciais (turmas e disciplinas).
 
-## 2. Criar os usuários (login)
+> Se você já rodou uma versão antiga do `schema.sql` (sem Storage), rode também `supabase/migration_storage.sql`.
 
-Como você escolheu usar o **Supabase Auth**, os usuários são criados pelo painel, não por um arquivo `.txt`:
+## 2. Pegar suas chaves de API
 
-1. Vá em **Authentication → Users → Add user → Create new user**.
-2. Preencha e-mail e senha.
-3. Em **"User Metadata"**, adicione um JSON assim:
+Vá em **Project Settings → API**. Você vai precisar de três valores:
 
-```json
-{ "nome": "Ana Turdi", "tipo": "aluno", "turma": "3B" }
-```
+| Variável | Onde encontrar | Pode aparecer no navegador? |
+|---|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL` | Project URL | Sim |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | anon public key | Sim |
+| `SUPABASE_SERVICE_ROLE_KEY` | service_role key (clique em "Reveal") | **NÃO, NUNCA** |
 
-   - `tipo` pode ser `aluno`, `professor` ou `admin`.
-   - `turma` só é necessária para alunos (use o código, ex: `3B`).
+⚠️ A `service_role key` dá acesso total e irrestrito ao banco, ignorando toda regra de segurança (RLS). Ela só é usada dentro das API Routes do servidor (pasta `app/api/`), nunca em componentes que rodam no navegador. Trate-a como uma senha de administrador.
 
-4. Repita para cada usuário (admin, professores, alunos).
-5. Um gatilho (trigger) já configurado no `schema.sql` cria automaticamente o perfil na tabela `profiles`.
-
-> 💡 Dica: crie pelo menos 1 admin, 1 professor e 2-3 alunos de turmas diferentes para testar tudo.
-
-## 3. Adicionar dados de exemplo (opcional, mas recomendado)
-
-Depois de criar os usuários, vá em **Table Editor** e adicione manualmente (ou via SQL):
-- **`atividades`** — tarefas escolares
-- **`apostilas`** — materiais em PDF
-- **`notas`** — notas dos alunos (use o UUID do aluno, visível em Authentication → Users)
-- **`comunicados`** — avisos da escola
-- **`horarios`** — grade horária por turma
-
-Veja exemplos de como preencher cada campo no próprio `schema.sql` (seção de comentários).
-
-## 4. Rodar localmente
+## 3. Rodar localmente
 
 ```bash
 npm install
 cp .env.local.example .env.local
 ```
 
-Edite `.env.local` e cole sua **Project URL** e **anon key** (em Supabase → Settings → API):
-
-```
-NEXT_PUBLIC_SUPABASE_URL=https://seu-projeto.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=sua_chave_anon
-```
-
-Depois:
+Edite `.env.local` e cole os três valores.
 
 ```bash
 npm run dev
@@ -69,28 +56,36 @@ npm run dev
 
 Acesse `http://localhost:3000`.
 
+## 4. Criar o primeiro usuário admin
+
+Como a tela de Usuários só aparece para quem já é admin, o **primeiro** admin precisa ser criado direto no Supabase (só essa vez):
+
+1. **Authentication → Users → Add user**.
+2. Preencha e-mail e senha.
+3. Em "User Metadata", adicione:
+   ```json
+   { "nome": "Seu Nome", "tipo": "admin" }
+   ```
+4. Depois disso, faça login no site com esse usuário — a partir daí, todos os outros usuários (alunos, professores) podem ser criados direto pela tela **Usuários** do EducaTurdi.
+
 ## 5. Subir pro GitHub
 
 ```bash
 git init
 git add .
-git commit -m "EducaTurdi - versão inicial"
+git commit -m "EducaTurdi - versão completa"
 git branch -M main
 git remote add origin https://github.com/SEU_USUARIO/educaturdi.git
 git push -u origin main
 ```
 
-⚠️ **O arquivo `.env.local` está no `.gitignore` e NUNCA deve ser commitado.** Suas chaves do Supabase ficam apenas no seu computador e na Vercel.
+⚠️ **O arquivo `.env.local` está no `.gitignore` e NUNCA deve ser commitado.**
 
 ## 6. Hospedar na Vercel
 
-1. Acesse [vercel.com](https://vercel.com) → **New Project** → importe seu repositório do GitHub.
-2. Em **Environment Variables**, adicione:
-   - `NEXT_PUBLIC_SUPABASE_URL`
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-3. Clique em **Deploy**.
-
-Pronto! Seu site estará no ar em `https://seu-projeto.vercel.app`.
+1. [vercel.com](https://vercel.com) → **New Project** → importe seu repositório do GitHub.
+2. Em **Environment Variables**, adicione as **três** chaves (incluindo `SUPABASE_SERVICE_ROLE_KEY`, sem o prefixo `NEXT_PUBLIC_`).
+3. **Deploy**.
 
 ---
 
@@ -98,42 +93,36 @@ Pronto! Seu site estará no ar em `https://seu-projeto.vercel.app`.
 
 ```
 app/
-  login/              → página de login (Supabase Auth)
-  auth/callback/       → rota de callback do Supabase Auth
-  (app)/                → grupo de rotas protegidas (exige login)
+  login/                  → página de login
+  auth/callback/           → callback do Supabase Auth
+  api/usuarios/             → API routes (criação/edição/exclusão de usuários, usa service_role key)
+  (app)/                     → rotas protegidas (exige login)
     dashboard/
-    atividades/
-    apostilas/
-    notas/
-    comunicados/
-    horario/
-    turmas/             → só professor/admin
-    usuarios/           → só admin
+    atividades/              → + NovaAtividadeModal
+    apostilas/                → + NovaApostilaModal (upload real de PDF)
+    notas/                     → + LancarNotaModal
+    comunicados/                → + NovoComunicadoModal
+    horario/                     → + NovaAulaModal
+    turmas/                       → só professor/admin
+    usuarios/                      → só admin — CRUD completo de usuários
     perfil/
-  layout.tsx            → layout raiz
-  globals.css           → tema visual (verde)
 components/
-  AppShell.tsx           → sidebar + topbar
-  Badge.tsx
-  Toast.tsx
+  forms/                    → modais de criação (atividade, apostila, nota, comunicado, aula)
+  AppShell.tsx, Badge.tsx, Modal.tsx, Toast.tsx
 lib/supabase/
-  client.ts              → cliente Supabase (browser)
-  server.ts              → cliente Supabase (servidor)
-middleware.ts             → protege rotas e atualiza sessão
-supabase/schema.sql        → schema completo do banco (rode isso primeiro!)
-types/database.ts          → tipos TypeScript das tabelas
+  client.ts                 → cliente (browser, anon key)
+  server.ts                  → cliente (servidor, anon key + RLS)
+  admin.ts                    → cliente administrativo (service_role key) — SÓ em API routes
+middleware.ts
+supabase/schema.sql           → schema completo (rode isso primeiro!)
+supabase/migration_storage.sql → migração extra se você já tinha rodado uma versão antiga
+types/database.ts
 ```
 
-## Segurança (RLS)
+## Segurança
 
-Todas as tabelas têm **Row Level Security** ativado:
-- Alunos só veem atividades/apostilas/notas/horários da própria turma.
-- Professores e admins veem tudo.
-- Só admin gerencia usuários e turmas.
-- Cada aluno só edita a própria entrega de atividade e a própria senha.
+- Todas as tabelas têm **Row Level Security** ativado.
+- Alunos só veem dados da própria turma; professores/admins veem tudo.
+- A criação de usuários passa por uma API Route que verifica, no servidor, se quem está chamando é realmente um admin — antes de usar a service_role key.
+- Upload de PDF: o bucket é público para leitura, mas só professor/admin pode enviar ou remover arquivos (verificado via RLS do Storage).
 
-## Próximos passos sugeridos (não inclusos)
-
-- **Upload real de PDF**: usar o Supabase Storage (criar um bucket `apostilas` e salvar a URL pública em `apostilas.arquivo_url`).
-- **Criação de atividades/comunicados pela interface**: hoje isso é feito pelo Table Editor do Supabase; dá pra criar formulários no site também.
-- **Recuperação de senha**: o Supabase Auth já suporta `resetPasswordForEmail()` — é só adicionar uma tela para isso.
