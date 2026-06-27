@@ -14,25 +14,32 @@ export default async function NotasPage() {
       <NotasClient
         modo="aluno"
         turmaAtual={profile.turma ?? ''}
-        notasPorAluno={{ [profile.turma ?? '']: (notas as Nota[] | null) ?? [] }}
+        notasPorAluno={{}}
+        alunosPorTurma={{}}
+        notasDoAluno={(notas as Nota[] | null) ?? []}
         disciplinas={(disciplinas as Disciplina[] | null) ?? []}
         turmas={[]}
       />
     );
   }
 
-  // Professor/admin: busca notas agrupadas por turma (via profiles + notas)
-  const { data: turmas } = await supabase.from('turmas').select('*');
-  const { data: alunos } = await supabase.from('profiles').select('*').eq('tipo', 'aluno');
+  // Professor/admin: lista alunos de cada turma e as notas de cada um
+  const { data: turmas } = await supabase.from('turmas').select('*').order('id');
+  const { data: alunos } = await supabase.from('profiles').select('*').eq('tipo', 'aluno').order('nome');
 
+  const alunosPorTurma: Record<string, Profile[]> = {};
   const notasPorAluno: Record<string, Nota[]> = {};
+
   for (const t of turmas ?? []) {
-    const idsAlunosDaTurma = (alunos as Profile[] | null)?.filter(a => a.turma === t.id).map(a => a.id) ?? [];
-    if (!idsAlunosDaTurma.length) { notasPorAluno[t.id] = []; continue; }
-    // Para simplificar a visão agregada do professor, pegamos as notas do primeiro aluno como representativo
-    // (em um sistema real, você teria uma view agregada — aqui mantemos simples)
-    const { data: notasTurma } = await supabase.from('notas').select('*').in('aluno_id', idsAlunosDaTurma);
-    notasPorAluno[t.id] = (notasTurma as Nota[] | null) ?? [];
+    const alunosDaTurma = (alunos as Profile[] | null)?.filter(a => a.turma === t.id) ?? [];
+    alunosPorTurma[t.id] = alunosDaTurma;
+
+    if (alunosDaTurma.length) {
+      const { data: notasTurma } = await supabase.from('notas').select('*').in('aluno_id', alunosDaTurma.map(a => a.id));
+      for (const a of alunosDaTurma) {
+        notasPorAluno[a.id] = ((notasTurma as Nota[] | null) ?? []).filter(n => n.aluno_id === a.id);
+      }
+    }
   }
 
   return (
@@ -40,6 +47,8 @@ export default async function NotasPage() {
       modo="gestao"
       turmaAtual=""
       notasPorAluno={notasPorAluno}
+      alunosPorTurma={alunosPorTurma}
+      notasDoAluno={[]}
       disciplinas={(disciplinas as Disciplina[] | null) ?? []}
       turmas={(turmas ?? []).map(t => t.id)}
     />

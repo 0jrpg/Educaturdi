@@ -1,8 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import { IconPencil } from '@tabler/icons-react';
 import Badge from '@/components/Badge';
-import type { Nota, Disciplina } from '@/types/database';
+import LancarNotaModal from '@/components/forms/LancarNotaModal';
+import type { Nota, Disciplina, Profile } from '@/types/database';
 
 function discCor(disciplinas: Disciplina[], nome: string) {
   return disciplinas.find(d => d.nome === nome)?.cor ?? '#64748b';
@@ -14,7 +16,7 @@ function media(n: Nota) {
 
 function BoletimTable({ turma, notas, disciplinas }: { turma: string; notas: Nota[]; disciplinas: Disciplina[] }) {
   if (!notas.length) {
-    return <p style={{ color: 'var(--s400)', padding: '1rem' }}>Sem notas lançadas ainda para esta turma. Lance pelo Supabase Table Editor.</p>;
+    return <p style={{ color: 'var(--s400)', padding: '1rem' }}>Sem notas lançadas ainda.</p>;
   }
 
   const medias = notas.map(media).filter((v): v is number => v !== null);
@@ -30,7 +32,7 @@ function BoletimTable({ turma, notas, disciplinas }: { turma: string; notas: Not
         <div className="stat-card"><div className="stat-lbl">Reprovadas</div><div className="stat-val" style={{ color: 'var(--re700)' }}>{medias.filter(m => m < 5).length}</div></div>
       </div>
       <div className="card">
-        <div className="card-hd"><h3>Boletim — Turma {turma} · 1º Semestre 2026</h3></div>
+        <div className="card-hd"><h3>Boletim — {turma} · 1º Semestre 2026</h3></div>
         <div className="table-wrap">
           <table className="table">
             <thead><tr><th>Disciplina</th><th>Professor</th><th>1º Bim</th><th>2º Bim</th><th>3º Bim</th><th>4º Bim</th><th>Média</th><th>Situação</th></tr></thead>
@@ -58,34 +60,87 @@ function BoletimTable({ turma, notas, disciplinas }: { turma: string; notas: Not
 }
 
 export default function NotasClient({
-  modo, turmaAtual, notasPorAluno, disciplinas, turmas,
+  modo, turmaAtual, notasPorAluno, alunosPorTurma, notasDoAluno, disciplinas, turmas,
 }: {
   modo: 'aluno' | 'gestao';
   turmaAtual: string;
   notasPorAluno: Record<string, Nota[]>;
+  alunosPorTurma: Record<string, Profile[]>;
+  notasDoAluno: Nota[];
   disciplinas: Disciplina[];
   turmas: string[];
 }) {
-  const [turmaSelecionada, setTurmaSelecionada] = useState(turmas[0] ?? turmaAtual);
+  const [turmaSelecionada, setTurmaSelecionada] = useState(turmas[0] ?? '');
+  const [alunoSelecionado, setAlunoSelecionado] = useState<Profile | null>(null);
+  const [modalLancar, setModalLancar] = useState(false);
 
   if (modo === 'aluno') {
     return (
       <div>
         <div className="page-header"><div><h1>Notas & Boletim</h1><p>Turma {turmaAtual} · 1º Semestre 2026</p></div></div>
-        <BoletimTable turma={turmaAtual} notas={notasPorAluno[turmaAtual] ?? []} disciplinas={disciplinas} />
+        <BoletimTable turma={turmaAtual} notas={notasDoAluno} disciplinas={disciplinas} />
       </div>
     );
   }
 
+  const alunosDaTurma = alunosPorTurma[turmaSelecionada] ?? [];
+
   return (
     <div>
-      <div className="page-header"><div><h1>Notas & Boletim</h1><p>Selecione a turma</p></div></div>
+      <div className="page-header">
+        <div><h1>Notas & Boletim</h1><p>Selecione a turma e o aluno</p></div>
+        <button className="btn btn-primary" onClick={() => setModalLancar(true)}>
+          <IconPencil size={16} /> Lançar Notas
+        </button>
+      </div>
+
       <div className="tabs">
         {turmas.map((t) => (
-          <button key={t} className={`tab-btn ${turmaSelecionada === t ? 'active' : ''}`} onClick={() => setTurmaSelecionada(t)}>{t}</button>
+          <button
+            key={t}
+            className={`tab-btn ${turmaSelecionada === t ? 'active' : ''}`}
+            onClick={() => { setTurmaSelecionada(t); setAlunoSelecionado(null); }}
+          >
+            {t}
+          </button>
         ))}
       </div>
-      <BoletimTable turma={turmaSelecionada} notas={notasPorAluno[turmaSelecionada] ?? []} disciplinas={disciplinas} />
+
+      {!alunoSelecionado ? (
+        alunosDaTurma.length === 0 ? (
+          <div className="empty-state"><h3>Nenhum aluno nesta turma</h3></div>
+        ) : (
+          <div className="card">
+            <div className="card-hd"><h3>Alunos — Turma {turmaSelecionada}</h3></div>
+            <div className="table-wrap">
+              <table className="table">
+                <thead><tr><th>Nome</th><th>Média Geral</th><th></th></tr></thead>
+                <tbody>
+                  {alunosDaTurma.map((a) => {
+                    const notas = notasPorAluno[a.id] ?? [];
+                    const medias = notas.map(media).filter((v): v is number => v !== null);
+                    const geral = medias.length ? (medias.reduce((x, y) => x + y, 0) / medias.length).toFixed(1) : '—';
+                    return (
+                      <tr key={a.id} style={{ cursor: 'pointer' }} onClick={() => setAlunoSelecionado(a)}>
+                        <td style={{ fontWeight: 500 }}>{a.nome}</td>
+                        <td style={{ fontWeight: 700, color: 'var(--g600)' }}>{geral}</td>
+                        <td><button className="btn btn-ghost btn-sm">Ver boletim →</button></td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )
+      ) : (
+        <div>
+          <button className="btn btn-outline btn-sm" style={{ marginBottom: '1rem' }} onClick={() => setAlunoSelecionado(null)}>← Voltar para a lista</button>
+          <BoletimTable turma={alunoSelecionado.nome} notas={notasPorAluno[alunoSelecionado.id] ?? []} disciplinas={disciplinas} />
+        </div>
+      )}
+
+      <LancarNotaModal open={modalLancar} onClose={() => setModalLancar(false)} disciplinas={disciplinas} turmas={turmas} />
     </div>
   );
 }
