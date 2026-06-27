@@ -13,6 +13,7 @@ export default async function ComunicadosPage() {
     <ComunicadosClient
       comunicados={(data as Comunicado[] | null) ?? []}
       podeGerenciar={profile?.tipo === 'professor' || profile?.tipo === 'admin'}
+      autorId={user!.id}
     />
   );
 }

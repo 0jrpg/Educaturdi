@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { IconPlus } from '@tabler/icons-react';
 import Badge from '@/components/Badge';
-import { useToast } from '@/components/Toast';
+import NovoComunicadoModal from '@/components/forms/NovoComunicadoModal';
 import type { Comunicado, Prioridade } from '@/types/database';
 
 const EMOJI: Record<string, string> = { Acadêmico: '📚', Evento: '🎉', Saúde: '💉', Sistema: '🔧' };
@@ -11,10 +11,10 @@ const PRIOR_VARIANT: Record<Prioridade, 'red' | 'blue' | 'slate'> = { alta: 'red
 const PRIOR_LABEL: Record<Prioridade, string> = { alta: 'Urgente', normal: 'Normal', baixa: 'Informativo' };
 
 export default function ComunicadosClient({
-  comunicados, podeGerenciar,
-}: { comunicados: Comunicado[]; podeGerenciar: boolean }) {
+  comunicados, podeGerenciar, autorId,
+}: { comunicados: Comunicado[]; podeGerenciar: boolean; autorId: string }) {
   const [catAtiva, setCatAtiva] = useState('Todos');
-  const showToast = useToast();
+  const [modalNovo, setModalNovo] = useState(false);
   const categorias = ['Todos', ...new Set(comunicados.map(c => c.categoria))];
   const filtrados = catAtiva === 'Todos' ? comunicados : comunicados.filter(c => c.categoria === catAtiva);
 
@@ -23,7 +23,7 @@ export default function ComunicadosClient({
       <div className="page-header">
         <div><h1>Comunicados</h1><p>Avisos e informações da escola</p></div>
         {podeGerenciar && (
-          <button className="btn btn-primary" onClick={() => showToast('Crie comunicados pelo Supabase Table Editor por enquanto.', 'warning')}>
+          <button className="btn btn-primary" onClick={() => setModalNovo(true)}>
             <IconPlus size={16} /> Novo Comunicado
           </button>
         )}
@@ -59,6 +59,10 @@ export default function ComunicadosClient({
           </div>
         </div>
       ))}
+
+      {podeGerenciar && (
+        <NovoComunicadoModal open={modalNovo} onClose={() => setModalNovo(false)} autorId={autorId} />
+      )}
     </div>
   );
 }
