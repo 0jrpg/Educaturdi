@@ -1,11 +1,13 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { IconSearch, IconCalendar, IconStar, IconX, IconUpload, IconPlus } from '@tabler/icons-react';
 import Badge from '@/components/Badge';
 import { createClient } from '@/lib/supabase/client';
 import { useToast } from '@/components/Toast';
-import type { Atividade, Disciplina, StatusAtividade } from '@/types/database';
+import NovaAtividadeModal from '@/components/forms/NovaAtividadeModal';
+import type { Atividade, Disciplina, StatusAtividade, Turma } from '@/types/database';
 
 interface AtividadeComStatus extends Atividade { status: StatusAtividade; }
 
@@ -20,18 +22,21 @@ function fmtData(iso: string) {
 }
 
 export default function AtividadesClient({
-  atividades, disciplinas, isAluno, turma, alunoId,
+  atividades, disciplinas, turmas, isAluno, turma, alunoId,
 }: {
   atividades: AtividadeComStatus[];
   disciplinas: Disciplina[];
+  turmas: Turma[];
   isAluno: boolean;
   turma: string | null;
   alunoId: string;
 }) {
+  const router = useRouter();
   const [filtro, setFiltro] = useState<'todas' | StatusAtividade>('todas');
   const [busca, setBusca] = useState('');
   const [selecionada, setSelecionada] = useState<AtividadeComStatus | null>(null);
   const [enviando, setEnviando] = useState(false);
+  const [modalNova, setModalNova] = useState(false);
   const showToast = useToast();
   const supabase = createClient();
 
@@ -67,8 +72,7 @@ export default function AtividadesClient({
     }
     showToast('Atividade marcada como entregue!', 'success');
     setSelecionada(null);
-    // Recarrega a página pra refletir o novo status (poderia usar router.refresh())
-    window.location.reload();
+    router.refresh();
   }
 
   return (
@@ -79,7 +83,7 @@ export default function AtividadesClient({
           <p>{isAluno ? `Turma ${turma}` : 'Todas as turmas'} · 1º Semestre 2026</p>
         </div>
         {!isAluno && (
-          <button className="btn btn-primary" onClick={() => showToast('Criação de atividades: use o Supabase Table Editor por enquanto.', 'warning')}>
+          <button className="btn btn-primary" onClick={() => setModalNova(true)}>
             <IconPlus size={16} /> Nova Atividade
           </button>
         )}
@@ -189,6 +193,16 @@ export default function AtividadesClient({
             </div>
           </div>
         </div>
+      )}
+
+      {!isAluno && (
+        <NovaAtividadeModal
+          open={modalNova}
+          onClose={() => setModalNova(false)}
+          disciplinas={disciplinas}
+          turmas={turmas}
+          professorId={alunoId}
+        />
       )}
     </div>
   );

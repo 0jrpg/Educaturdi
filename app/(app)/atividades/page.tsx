@@ -1,5 +1,5 @@
 import { createClient } from '@/lib/supabase/server';
-import type { Atividade, Disciplina } from '@/types/database';
+import type { Atividade, Disciplina, Turma } from '@/types/database';
 import AtividadesClient from './AtividadesClient';
 
 function diasAte(iso: string) {
@@ -13,6 +13,7 @@ export default async function AtividadesPage() {
   const isAluno = profile?.tipo === 'aluno';
 
   const { data: disciplinas } = await supabase.from('disciplinas').select('*');
+  const { data: turmas } = await supabase.from('turmas').select('*').order('id');
   const { data: atividadesRaw } = await supabase.from('atividades').select('*').order('prazo');
   const atividades = (atividadesRaw as Atividade[] | null) ?? [];
 
@@ -33,6 +34,7 @@ export default async function AtividadesPage() {
     <AtividadesClient
       atividades={ativsComStatus as any}
       disciplinas={(disciplinas as Disciplina[] | null) ?? []}
+      turmas={(turmas as Turma[] | null) ?? []}
       isAluno={isAluno}
       turma={profile?.turma ?? null}
       alunoId={user!.id}
