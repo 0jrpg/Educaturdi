@@ -66,17 +66,28 @@ Um ambiente digital criado para acompanhar a evolução das instituições e pro
 
 ## 🛠️ Tecnologias
 
-![Supabase](https://img.shields.io/badge/Supabase-%233ECF8E.svg?style=for-the-badge\&logo=supabase\&logoColor=white)
-![Next JS](https://img.shields.io/badge/Next-%23000.svg?style=for-the-badge\&logo=next.js\&logoColor=white)
-![NodeJS](https://img.shields.io/badge/node.js-%236DA55F.svg?style=for-the-badge\&logo=node.js\&logoColor=white)
-![Expo](https://img.shields.io/badge/expo-%231C1E24.svg?style=for-the-badge\&logo=expo\&logoColor=%23D04A37)
-![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge\&logo=vercel\&logoColor=white)
-![CSS](https://img.shields.io/badge/css-%23663399.svg?style=for-the-badge\&logo=css\&logoColor=white)
-![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge\&logo=javascript\&logoColor=%23F7DF1E)
-![Markdown](https://img.shields.io/badge/markdown-%23000000.svg?style=for-the-badge\&logo=markdown\&logoColor=white)
-![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge\&logo=typescript\&logoColor=white)
-![YAML](https://img.shields.io/badge/yaml-%23ffffff.svg?style=for-the-badge\&logo=yaml\&logoColor=151515)
-![SQLAlchemy](https://img.shields.io/badge/sqlalchemy-%23D71F00.svg?style=for-the-badge\&logo=sqlalchemy\&logoColor=white)
+<p align="center">
+  <img src="https://img.shields.io/badge/Supabase-%233ECF8E.svg?style=for-the-badge&logo=supabase&logoColor=white" alt="Supabase">
+  <img src="https://img.shields.io/badge/Next-%23000.svg?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js">
+  <img src="https://img.shields.io/badge/node.js-%236DA55F.svg?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js">
+  <img src="https://img.shields.io/badge/expo-%231C1E24.svg?style=for-the-badge&logo=expo&logoColor=%23D04A37" alt="Expo">
+  <img src="https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel">
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/css-%23663399.svg?style=for-the-badge&logo=css&logoColor=white" alt="CSS">
+  <img src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E" alt="JavaScript">
+  <img src="https://img.shields.io/badge/markdown-%23000000.svg?style=for-the-badge&logo=markdown&logoColor=white" alt="Markdown">
+  <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/yaml-%23ffffff.svg?style=for-the-badge&logo=yaml&logoColor=151515" alt="YAML">
+  <img src="https://img.shields.io/badge/sqlalchemy-%23D71F00.svg?style=for-the-badge&logo=sqlalchemy&logoColor=white" alt="SQLAlchemy">
+</p>
+
+<p align="center">
+  <code>┌─────────────────────────────────────────────────────┐</code><br>
+  <code>│  🧩 TECNOLOGIA  •  MODERNA  •  INTEGRADA  •  🚀  │</code><br>
+  <code>└─────────────────────────────────────────────────────┘</code>
+</p>
 
 ---
 
