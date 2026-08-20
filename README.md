@@ -10,10 +10,14 @@
 </p>
 
 <p align="center">
-  <img src="https://shields.io" alt="Next.js" />
-  <img src="https://shields.io" alt="Supabase" />
-  <img src="https://shields.io" alt="TypeScript" />
-  <img src="https://shields.io" alt="Vercel" />
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/NextJS-Dark.svg" />
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/JavaScript.svg" />
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/TypeScript.svg" />
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Vercel-Dark.svg" /
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/NodeJS-Dark.svg" />
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Npm-Dark.svg" />
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/SVG-Dark.svg" />
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Github-Dark.svg" />
 </p>
 
 
