@@ -1,15 +1,39 @@
-"observability": {
-  "enabled": true,
-  "head_sampling_rate": 1,
-  "logs": {
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "main": ".open-next/worker.js",
+  "name": "educaturdi",
+  "compatibility_date": "2026-08-20",
+
+  "compatibility_flags": [
+    "nodejs_compat",
+    "global_fetch_strictly_public"
+  ],
+
+  "observability": {
     "enabled": true,
     "head_sampling_rate": 1,
-    "persist": true,
-    "invocation_logs": true
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 1,
+      "persist": true,
+      "invocation_logs": true
+    },
+    "traces": {
+      "enabled": false,
+      "persist": true,
+      "head_sampling_rate": 1
+    }
   },
-  "traces": {
-    "enabled": false,
-    "persist": true,
-    "head_sampling_rate": 1
-  }
+
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+
+  "r2_buckets": [
+    {
+      "binding": "NEXT_INC_CACHE_R2_BUCKET",
+      "bucket_name": "cache"
+    }
+  ]
 }
