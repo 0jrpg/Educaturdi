@@ -1,4 +1,3 @@
-```tsx
 'use client';
 
 import Link from 'next/link';
@@ -209,12 +208,11 @@ export default function AppShell({
   // /turmas    -> /app/turmas/icon.svg
   // /provas    -> /app/provas/icon.svg
   useEffect(() => {
-    const iconPath =
-      pathname === '/dashboard'
-        ? '/app/icon.svg'
-        : `/app${pathname}/icon.svg`;
+    const iconPath = pathname === '/dashboard'
+      ? '/app/icon.svg'
+      : '/app' + pathname + '/icon.svg';
 
-    const iconUrl = `${window.location.origin}${iconPath}`;
+    const iconUrl = window.location.origin + iconPath;
 
     // Remove os favicons anteriores para evitar conflitos
     // com os ícones gerados pelo Next.js.
@@ -555,4 +553,3 @@ export default function AppShell({
     </PresenceProvider>
   );
 }
-```
