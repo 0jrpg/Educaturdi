@@ -80,7 +80,7 @@ export const config = {
      * 2. Libera APENAS o ícone da tela de login (^app/login/icon\\.svg$).
      * Todo o resto exigirá login pelo Supabase (Dashboard, uploads, turmas, etc).
      */
-    '/((?!_next/static|_next/image|^app/login/icon\\.svg$).*)',
+    '/((?!_next/static|_next/image|^app/login/icon\\.svg$|^favicon\\.ico$).*)',
   ],
 };
 
