@@ -57,16 +57,31 @@ const NAV_GROUPS: { label: string; links: NavLink[] }[] = [
 ];
 
 const PAGE_LABELS: Record<string, string> = {
-  '/dashboard': 'Início', '/tarefas': 'Tarefas', '/trabalhos': 'Trabalhos', '/provas': 'Provas',
-  '/apostilas': 'Apostilas', '/resumos': 'Resumos', '/notas': 'Notas', '/comunicados': 'Comunicados', '/horario': 'Horário',
-  '/turmas': 'Turmas', '/disciplinas': 'Disciplinas', '/usuarios': 'Usuários', '/perfil': 'Meu Perfil', '/fichas': 'Fichas',
+  '/dashboard': 'Início',
+  '/tarefas': 'Tarefas',
+  '/trabalhos': 'Trabalhos',
+  '/provas': 'Provas',
+  '/apostilas': 'Apostilas',
+  '/resumos': 'Resumos',
+  '/notas': 'Notas',
+  '/comunicados': 'Comunicados',
+  '/horario': 'Horário',
+  '/turmas': 'Turmas',
+  '/disciplinas': 'Disciplinas',
+  '/usuarios': 'Usuários',
+  '/perfil': 'Meu Perfil',
+  '/fichas': 'Fichas',
 };
 
 const LS_KEY = 'et_sidebar_pinned';
 
 export default function AppShell({
   children, profile, email,
-}: { children: React.ReactNode; profile: Profile; email: string }) {
+}: {
+  children: React.ReactNode;
+  profile: Profile;
+  email: string;
+}) {
   const pathname = usePathname();
   const supabase = createClient();
   const [sidebarOpenMobile, setSidebarOpenMobile] = useState(false);
@@ -84,6 +99,32 @@ export default function AppShell({
     return () => clearTimeout(t);
   }, []);
 
+  // Define o favicon de acordo com a página atual,
+  // usando a URL pública do próprio site.
+  useEffect(() => {
+    const baseUrl = window.location.origin;
+
+    const iconUrl =
+      pathname === '/'
+        ? `${baseUrl}/app/icon.svg`
+        : `${baseUrl}/app${pathname}/icon.svg`;
+
+    const favicons = document.querySelectorAll<HTMLLinkElement>(
+      'link[rel="icon"], link[rel="shortcut icon"]'
+    );
+
+    if (favicons.length > 0) {
+      favicons.forEach((favicon) => {
+        favicon.href = iconUrl;
+      });
+    } else {
+      const favicon = document.createElement('link');
+      favicon.rel = 'icon';
+      favicon.href = iconUrl;
+      document.head.appendChild(favicon);
+    }
+  }, [pathname]);
+
   function togglePinned() {
     setPinned((atual) => {
       const novo = !atual;
@@ -97,13 +138,18 @@ export default function AppShell({
     if (peekTimeout.current) clearTimeout(peekTimeout.current);
     setPeek(true);
   }
+
   function fecharPeekComAtraso() {
     if (peekTimeout.current) clearTimeout(peekTimeout.current);
     peekTimeout.current = setTimeout(() => setPeek(false), 220);
   }
 
   const initials = profile.nome.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase();
-  const roleLabel = { aluno: `Aluno · Turma ${profile.turma}`, professor: 'Professor', admin: 'Administrador' }[profile.tipo];
+  const roleLabel = {
+    aluno: `Aluno · Turma ${profile.turma}`,
+    professor: 'Professor',
+    admin: 'Administrador'
+  }[profile.tipo];
 
   useTentativaAtivaGuard(profile.id, profile.tipo === 'aluno');
 
@@ -126,13 +172,21 @@ export default function AppShell({
   return (
     <PresenceProvider userId={profile.id}>
       <div id="app-shell">
+
         {/* Faixa sensível ao mouse, na borda esquerda — só existe (visualmente
             invisível) quando o menu está desafixado, pra revelar a barra ao
             passar o mouse perto dela. */}
         {!pinned && (
           <div
             onMouseEnter={abrirPeek}
-            style={{ position: 'fixed', left: 0, top: 0, width: 16, height: '100vh', zIndex: 150 }}
+            style={{
+              position: 'fixed',
+              left: 0,
+              top: 0,
+              width: 16,
+              height: '100vh',
+              zIndex: 150
+            }}
             className="sidebar-hotzone"
           />
         )}
@@ -144,32 +198,48 @@ export default function AppShell({
           onMouseLeave={() => { if (!pinned) fecharPeekComAtraso(); }}
         >
           <div className="sb-logo">
-            <div className="sb-logo-icon"><IconSchool size={20} color="#fff" /></div>
+            <div className="sb-logo-icon">
+              <IconSchool size={20} color="#fff" />
+            </div>
+
             <div>
-              <div className="sb-logo-text">Educa<span>Turdi</span></div>
+              <div className="sb-logo-text">
+                Educa<span>Turdi</span>
+              </div>
             </div>
           </div>
 
           <nav className="sb-nav">
             {NAV_GROUPS.map((group) => {
               const visible = group.links.filter(l => l.roles.includes(profile.tipo));
+
               if (!visible.length) return null;
+
               return (
                 <div key={group.label}>
                   <div className="sb-section-label">{group.label}</div>
+
                   {visible.map((l) => {
                     indiceGlobal += 1;
                     const ativo = pathname === l.href;
+
                     return (
                       <Link
                         key={l.href}
                         href={l.href}
                         className={`nav-item ${ativo ? 'active' : ''}`}
-                        style={{ animationDelay: `${Math.min(indiceGlobal * 0.03, 0.3)}s` }}
+                        style={{
+                          animationDelay: `${Math.min(indiceGlobal * 0.03, 0.3)}s`
+                        }}
                         onClick={() => setSidebarOpenMobile(false)}
                       >
-                        <span className="nav-item-icon">{l.icon}</span>
-                        <span className="nav-item-label">{l.label}</span>
+                        <span className="nav-item-icon">
+                          {l.icon}
+                        </span>
+
+                        <span className="nav-item-label">
+                          {l.label}
+                        </span>
                       </Link>
                     );
                   })}
@@ -177,18 +247,36 @@ export default function AppShell({
               );
             })}
           </nav>
+
           <div className="sb-nav-fade" />
 
           <div className="sb-footer">
             <Link href="/perfil" className="sb-user">
-              <div className="avatar" style={{ background: 'rgba(255,255,255,.15)', color: '#fff' }}>{initials}</div>
+              <div
+                className="avatar"
+                style={{
+                  background: 'rgba(255,255,255,.15)',
+                  color: '#fff'
+                }}
+              >
+                {initials}
+              </div>
+
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div className="sb-user-name">{profile.nome}</div>
-                <div className="sb-user-role"><div className="role-dot" />{roleLabel}</div>
+                <div className="sb-user-name">
+                  {profile.nome}
+                </div>
+
+                <div className="sb-user-role">
+                  <div className="role-dot" />
+                  {roleLabel}
+                </div>
               </div>
             </Link>
+
             <button className="sb-logout" onClick={handleLogout}>
-              <IconLogout size={14} /> Sair da conta
+              <IconLogout size={14} />
+              Sair da conta
             </button>
           </div>
         </aside>
@@ -198,34 +286,84 @@ export default function AppShell({
           onClick={() => setSidebarOpenMobile(false)}
         />
 
-        <div id="main-area" style={{ marginLeft: pinned ? 'var(--sidebar-w)' : 0 }}>
+        <div
+          id="main-area"
+          style={{ marginLeft: pinned ? 'var(--sidebar-w)' : 0 }}
+        >
           <header id="topbar">
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-              <button id="sidebar-toggle" onClick={() => setSidebarOpenMobile(!sidebarOpenMobile)}>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 6
+            }}>
+              <button
+                id="sidebar-toggle"
+                onClick={() => setSidebarOpenMobile(!sidebarOpenMobile)}
+              >
                 <IconMenu2 size={20} />
               </button>
+
               <button
                 id="sidebar-pin-toggle"
                 onClick={togglePinned}
-                title={pinned ? 'Ocultar menu (aparece ao passar o mouse na borda)' : 'Fixar menu aberto'}
+                title={
+                  pinned
+                    ? 'Ocultar menu (aparece ao passar o mouse na borda)'
+                    : 'Fixar menu aberto'
+                }
               >
-                {pinned ? <IconLayoutSidebarLeftCollapse size={19} /> : <IconLayoutSidebarLeftExpand size={19} />}
+                {pinned
+                  ? <IconLayoutSidebarLeftCollapse size={19} />
+                  : <IconLayoutSidebarLeftExpand size={19} />}
               </button>
+
               <div className="tb-breadcrumb">
-                <span className="tb-crumb" style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-                  <IconSchool size={15} /> <span className="hide-xs tb-crumb-brand">EducaTurdi</span>
+                <span
+                  className="tb-crumb"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 5
+                  }}
+                >
+                  <IconSchool size={15} />
+
+                  <span className="hide-xs tb-crumb-brand">
+                    EducaTurdi
+                  </span>
                 </span>
-                <IconChevronRight size={14} style={{ color: 'var(--s300)' }} className="hide-xs" />
-                <span className="tb-crumb-current">{PAGE_LABELS[pathname] ?? ''}</span>
+
+                <IconChevronRight
+                  size={14}
+                  style={{ color: 'var(--s300)' }}
+                  className="hide-xs"
+                />
+
+                <span className="tb-crumb-current">
+                  {PAGE_LABELS[pathname] ?? ''}
+                </span>
               </div>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 8
+            }}>
               <NotificationBell profile={profile} />
-              <UserMenu nome={profile.nome} initials={initials} roleLabel={roleLabel ?? ''} onLogout={handleLogout} />
+
+              <UserMenu
+                nome={profile.nome}
+                initials={initials}
+                roleLabel={roleLabel ?? ''}
+                onLogout={handleLogout}
+              />
             </div>
           </header>
 
-          <main id="page-content" key={pathname}>{children}</main>
+          <main id="page-content" key={pathname}>
+            {children}
+          </main>
         </div>
       </div>
     </PresenceProvider>
