@@ -1,74 +1,89 @@
 # 🎓 EducaTurdi
 
 <p align="center">
-  <img src="public/app/login/icon.svg" alt="EducaTurdi Logo" width="120px" />
+  <img src="public/app/login/icon.svg" alt="Logo do EducaTurdi" width="90" />
 </p>
 
 <p align="center">
-  <strong>A evolução do ambiente escolar em uma única plataforma.</strong><br />
-  Um espaço digital moderno, integrado e projetado para conectar pessoas e conhecimento.
+  <strong>Um novo jeito de viver o ambiente escolar.</strong><br>
+  Uma plataforma moderna, integrada e feita para aproximar pessoas e conhecimento.
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/NextJS-Dark.svg" />
-  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/JavaScript.svg" />
-  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/TypeScript.svg" />
-  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Vercel-Dark.svg" /
-  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/NodeJS-Dark.svg" />
-  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Npm-Dark.svg" />
-  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/SVG-Dark.svg" />
-  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Github-Dark.svg" />
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/NextJS-Dark.svg" height="28" alt="Next.js">
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/JavaScript.svg" height="28" alt="JavaScript">
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/TypeScript.svg" height="28" alt="TypeScript">
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Vercel-Dark.svg" height="28" alt="Vercel">
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/NodeJS-Dark.svg" height="28" alt="Node.js">
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Npm-Dark.svg" height="28" alt="npm">
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/SVG-Dark.svg" height="28" alt="SVG">
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Github-Dark.svg" height="28" alt="GitHub">
 </p>
 
+---
+
+## 🚀 Uma nova experiência escolar
+
+O **EducaTurdi** nasceu para transformar a maneira como a comunidade escolar se conecta com o ambiente educacional.
+
+Uma experiência digital moderna, elegante e intuitiva, pensada para deixar o dia a dia escolar mais **simples, organizado e conectado**.
+
+> 🎓 **EducaTurdi — tecnologia que aproxima a escola das pessoas.**
 
 ---
 
-## ⚡ Conecte-se ao Seu Dia Escolar
+## ✨ Feito para a escola moderna
 
-O **EducaTurdi** foi criado para substituir sistemas escolares antigos e estáticos por uma experiência viva e cheia de interatividade. Pensado nos mínimos detalhes para **Alunos, Professores e Administradores**, o sistema centraliza tudo o que acontece na escola em uma linha do tempo fluida e inteligente, repleta de microanimações, transições suaves e respostas visuais imediatas.
+Com uma identidade visual própria e uma experiência cuidadosamente pensada, o EducaTurdi traz uma nova perspectiva para o ambiente escolar.
 
----
+📚 **Mais organização** — uma experiência centralizada e fácil de acompanhar.
 
-## 🚀 Funcionalidades Principais
+⚡ **Mais praticidade** — informações importantes de forma clara e acessível.
 
-### 🟢 Conectividade Viva e Interativa
-A comunidade escolar se move unida em uma tela que nunca fica desatualizada:
-* **Presença ao Vivo:** Indicadores visuais que mostram instantaneamente o status dos usuários através de marcadores dinâmicos (Online, Ausente ou Offline).
-* **Painel de Atividades Simultâneas:** O sistema exibe de forma sutil o contexto atual de navegação na plataforma (como "Estudando: Geografia" ou "Visualizando Horários").
-* **Central Instantânea de Alertas:** Um sino interativo com contador no topo que brilha e atualiza no exato momento em que novos conteúdos são publicados.
+🎨 **Mais modernidade** — uma interface agradável, fluida e atual.
 
-### 📋 Módulo Avançado de Atividades
-Uma central completa para o envio e gerenciamento de tarefas e projetos:
-* **Gerenciamento de Prazos:** Classificação visual de atividades por relevância e tempo restante.
-* **Envio Multimídia:** Os estudantes interagem de forma direta, podendo anexar textos explicativos ou arquivos de imagem em suas respostas.
-* **Acompanhamento Pedagógico:** Painel simplificado para educadores monitorarem quem já abriu as propostas e quem já concluiu as entregas.
-
-### ⏱ Avaliações e Questionários Dinâmicos
-Um ambiente limpo e focado para a realização de exames e testes:
-* **Tempo Integrado:** Cronômetro fluido exibido diretamente na tela para auxiliar na gestão do tempo de resposta.
-* **Interface Imersiva:** Design focado para evitar distrações visuais e manter o foco total nas perguntas.
-* **Progresso Contínuo:** Gravação contínua das respostas para garantir que nenhuma informação digitada seja perdida durante o processo.
-
-### 📊 Painel de Desempenho e Boletins
-* Centralização de notas por bimestres de forma totalmente visual.
-* Planilha de lançamento rápido para professores preencherem turmas inteiras de uma só vez.
-* Indicadores visuais de desempenho que ajudam no acompanhamento pedagógico.
-
-### 📚 Centro de Mídias e Documentos
-* **Visualizador Exclusivo:** Um leitor próprio integrado ao site que abre arquivos e apresentações sem necessidade de downloads extras.
-* **Ferramentas de Leitura:** Controles de zoom, impressão e visualização expandida.
-* **Modo Cinema:** Suporte a tela cheia para maximizar a área de leitura e o foco nos estudos.
+🤝 **Mais conexão** — aproximando a comunidade escolar em um único ambiente.
 
 ---
 
-## 🎨 Design System e Interface Premium
+## 🎨 Uma experiência pensada nos detalhes
 
-A identidade visual do EducaTurdi foi moldada para oferecer o máximo de conforto e modernidade:
-* **Efeitos de Brilho e Gradientes:** Componentes visuais elegantes que mudam sutilmente de cor e se elevam ao passar o mouse.
-* **Menu Retrátil Inteligente:** Um menu lateral dinâmico para desktops que se recolhe para ampliar o espaço útil de estudo e reaparece ao aproximar o cursor da borda.
-* **Identidade Contextual:** O ícone da aba do navegador se transforma dinamicamente dependendo da área do site onde você está navegando (um livro para materiais, um cronômetro para exames).
+O EducaTurdi combina **design, tecnologia e simplicidade** para criar uma experiência que foge dos sistemas escolares tradicionais.
+
+Microanimações, transições suaves, elementos visuais modernos e uma navegação intuitiva tornam a plataforma agradável de usar em diferentes momentos do dia escolar.
 
 ---
+
+## 🌟 Mais que uma plataforma
+
+O EducaTurdi representa uma nova forma de enxergar a tecnologia dentro da escola.
+
+Um ambiente digital criado para acompanhar a evolução das instituições e proporcionar uma experiência mais moderna para toda a comunidade escolar.
+
+> **O futuro da experiência escolar começa aqui.**
+
+---
+
+## 🛠️ Tecnologias
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/NextJS-Dark.svg" height="24" alt="Next.js">
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/TypeScript.svg" height="24" alt="TypeScript">
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/JavaScript.svg" height="24" alt="JavaScript">
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/NodeJS-Dark.svg" height="24" alt="Node.js">
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Vercel-Dark.svg" height="24" alt="Vercel">
+</p>
+
+---
+
+## 🎓 EducaTurdi
+
+<p align="center">
+  <strong>A evolução do ambiente escolar em uma única plataforma.</strong><br><br>
+  Gostaria de um sistema para sua escola?<br>
+  <strong>Converse com a gente!</strong><br>
+  📧 <strong>EducaTurdi@gmail.com</strong>
+</p>
 
 <p align="center">
   Desenvolvido com dedicação por <strong>SprokTurdi</strong> 🎓
