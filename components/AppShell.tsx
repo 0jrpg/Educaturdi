@@ -11,11 +11,25 @@ import NotificationBell from '@/components/NotificationBell';
 import UserMenu from '@/components/UserMenu';
 import { useTentativaAtivaGuard } from '@/lib/useTentativaAtivaGuard';
 import {
-  IconSchool, IconLayoutDashboard, IconClipboardList, IconBooks,
-  IconReportAnalytics, IconSpeakerphone, IconCalendar, IconUsers,
-  IconUserCog, IconUserCircle, IconLogout, IconMenu2,
-  IconChevronRight, IconFileText, IconBriefcase, IconFlag3, IconClockHour4,
-  IconLayoutSidebarLeftCollapse, IconLayoutSidebarLeftExpand,
+  IconSchool,
+  IconLayoutDashboard,
+  IconClipboardList,
+  IconBooks,
+  IconReportAnalytics,
+  IconSpeakerphone,
+  IconCalendar,
+  IconUsers,
+  IconUserCog,
+  IconUserCircle,
+  IconLogout,
+  IconMenu2,
+  IconChevronRight,
+  IconFileText,
+  IconBriefcase,
+  IconFlag3,
+  IconClockHour4,
+  IconLayoutSidebarLeftCollapse,
+  IconLayoutSidebarLeftExpand,
 } from '@tabler/icons-react';
 
 interface NavLink {
@@ -173,25 +187,27 @@ export default function AppShell({
         ? window.localStorage.getItem(LS_KEY)
         : null;
 
-    if (saved === '0') setPinned(false);
+    if (saved === '0') {
+      setPinned(false);
+    }
 
     const t = setTimeout(() => setProntoParaAnimar(true), 50);
 
     return () => clearTimeout(t);
   }, []);
 
-  // Define o favicon de acordo com a página atual.
+  // Define o favicon da página atual.
   //
   // Dashboard:
-  //   /app/icon.svg
+  // /app/icon.svg
   //
   // Outras páginas:
-  //   /app/[rota]/icon.svg
+  // /app/[rota]/icon.svg
   //
-  // Exemplo:
-  //   /apostilas → /app/apostilas/icon.svg
-  //   /turmas    → /app/turmas/icon.svg
-  //   /provas    → /app/provas/icon.svg
+  // Exemplos:
+  // /apostilas -> /app/apostilas/icon.svg
+  // /turmas    -> /app/turmas/icon.svg
+  // /provas    -> /app/provas/icon.svg
   useEffect(() => {
     const iconPath =
       pathname === '/dashboard'
@@ -201,14 +217,14 @@ export default function AppShell({
     const iconUrl = `${window.location.origin}${iconPath}`;
 
     // Remove os favicons anteriores para evitar conflitos
-    // com os ícones que o Next.js possa ter colocado.
+    // com os ícones gerados pelo Next.js.
     document
       .querySelectorAll(
         'link[rel="icon"], link[rel="shortcut icon"]'
       )
       .forEach((element) => element.remove());
 
-    // Cria o favicon da página atual.
+    // Cria o favicon correto da página atual.
     const favicon = document.createElement('link');
 
     favicon.rel = 'icon';
@@ -250,10 +266,9 @@ export default function AppShell({
       clearTimeout(peekTimeout.current);
     }
 
-    peekTimeout.current = setTimeout(
-      () => setPeek(false),
-      220
-    );
+    peekTimeout.current = setTimeout(() => {
+      setPeek(false);
+    }, 220);
   }
 
   const initials = profile.nome
@@ -295,9 +310,9 @@ export default function AppShell({
   return (
     <PresenceProvider userId={profile.id}>
       <div id="app-shell">
-        {/* Faixa sensível ao mouse, na borda esquerda — só existe
-            (visualmente invisível) quando o menu está desafixado,
-            pra revelar a barra ao passar o mouse perto dela. */}
+        {/* Faixa sensível ao mouse, na borda esquerda — só existe (visualmente
+            invisível) quando o menu está desafixado, pra revelar a barra ao
+            passar o mouse perto dela. */}
         {!pinned && (
           <div
             onMouseEnter={abrirPeek}
@@ -317,10 +332,14 @@ export default function AppShell({
           id="sidebar"
           className={sidebarClasses}
           onMouseEnter={() => {
-            if (!pinned) abrirPeek();
+            if (!pinned) {
+              abrirPeek();
+            }
           }}
           onMouseLeave={() => {
-            if (!pinned) fecharPeekComAtraso();
+            if (!pinned) {
+              fecharPeekComAtraso();
+            }
           }}
         >
           <div className="sb-logo">
@@ -341,7 +360,9 @@ export default function AppShell({
                 l.roles.includes(profile.tipo)
               );
 
-              if (!visible.length) return null;
+              if (!visible.length) {
+                return null;
+              }
 
               return (
                 <div key={group.label}>
@@ -455,9 +476,7 @@ export default function AppShell({
               <button
                 id="sidebar-toggle"
                 onClick={() =>
-                  setSidebarOpenMobile(
-                    !sidebarOpenMobile
-                  )
+                  setSidebarOpenMobile(!sidebarOpenMobile)
                 }
               >
                 <IconMenu2 size={20} />
@@ -473,13 +492,9 @@ export default function AppShell({
                 }
               >
                 {pinned ? (
-                  <IconLayoutSidebarLeftCollapse
-                    size={19}
-                  />
+                  <IconLayoutSidebarLeftCollapse size={19} />
                 ) : (
-                  <IconLayoutSidebarLeftExpand
-                    size={19}
-                  />
+                  <IconLayoutSidebarLeftExpand size={19} />
                 )}
               </button>
 
@@ -501,9 +516,7 @@ export default function AppShell({
 
                 <IconChevronRight
                   size={14}
-                  style={{
-                    color: 'var(--s300)',
-                  }}
+                  style={{ color: 'var(--s300)' }}
                   className="hide-xs"
                 />
 
