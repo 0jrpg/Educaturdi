@@ -1,7 +1,7 @@
 # 🎓 EducaTurdi
 
 <p align="center">
-  <img src="./public/app/login/icon.svg" alt="EducaTurdi Logo" width="120px" />
+  <img src="public/app/login/icon.svg" alt="EducaTurdi Logo" width="120px" />
 </p>
 
 <p align="center">
@@ -15,6 +15,7 @@
   <img src="https://shields.io" alt="TypeScript" />
   <img src="https://shields.io" alt="Vercel" />
 </p>
+
 
 ---
 
