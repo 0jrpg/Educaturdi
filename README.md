@@ -18,6 +18,8 @@
   <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Npm-Dark.svg" height="28" alt="npm">
   <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/SVG-Dark.svg" height="28" alt="SVG">
   <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Github-Dark.svg" height="28" alt="GitHub">
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Supabase-Dark.svg" height="28" alt="Supabase">
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/PostgreSQL-Dark.svg" height="28" alt="PostGreSQL">
 </p>
 
 ---
