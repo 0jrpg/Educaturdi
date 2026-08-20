@@ -3,7 +3,6 @@
   "main": ".open-next/worker.js",
   "name": "educaturdi",
   "compatibility_date": "2026-08-20",
-
   "compatibility_flags": [
     "nodejs_compat",
     "global_fetch_strictly_public"
@@ -19,7 +18,7 @@
       "invocation_logs": true
     },
     "traces": {
-      "enabled": false,
+      "enabled": true,
       "persist": true,
       "head_sampling_rate": 1
     }
