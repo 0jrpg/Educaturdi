@@ -66,13 +66,17 @@ Um ambiente digital criado para acompanhar a evolução das instituições e pro
 
 ## 🛠️ Tecnologias
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/NextJS-Dark.svg" height="24" alt="Next.js">
-  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/TypeScript.svg" height="24" alt="TypeScript">
-  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/JavaScript.svg" height="24" alt="JavaScript">
-  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/NodeJS-Dark.svg" height="24" alt="Node.js">
-  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Vercel-Dark.svg" height="24" alt="Vercel">
-</p>
+![Supabase](https://img.shields.io/badge/Supabase-%233ECF8E.svg?style=for-the-badge\&logo=supabase\&logoColor=white)
+![Next JS](https://img.shields.io/badge/Next-%23000.svg?style=for-the-badge\&logo=next.js\&logoColor=white)
+![NodeJS](https://img.shields.io/badge/node.js-%236DA55F.svg?style=for-the-badge\&logo=node.js\&logoColor=white)
+![Expo](https://img.shields.io/badge/expo-%231C1E24.svg?style=for-the-badge\&logo=expo\&logoColor=%23D04A37)
+![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge\&logo=vercel\&logoColor=white)
+![CSS](https://img.shields.io/badge/css-%23663399.svg?style=for-the-badge\&logo=css\&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge\&logo=javascript\&logoColor=%23F7DF1E)
+![Markdown](https://img.shields.io/badge/markdown-%23000000.svg?style=for-the-badge\&logo=markdown\&logoColor=white)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge\&logo=typescript\&logoColor=white)
+![YAML](https://img.shields.io/badge/yaml-%23ffffff.svg?style=for-the-badge\&logo=yaml\&logoColor=151515)
+![SQLAlchemy](https://img.shields.io/badge/sqlalchemy-%23D71F00.svg?style=for-the-badge\&logo=sqlalchemy\&logoColor=white)
 
 ---
 
@@ -82,7 +86,7 @@ Um ambiente digital criado para acompanhar a evolução das instituições e pro
   <strong>A evolução do ambiente escolar em uma única plataforma.</strong><br><br>
   Gostaria de um sistema para sua escola?<br>
   <strong>Converse com a gente!</strong><br>
-  📧 <strong>EducaTurdi@gmail.com</strong>
+  📧 <a href="mailto:EducaTurdi@gmail.com"><strong>EducaTurdi@gmail.com</strong></a>
 </p>
 
 <p align="center">
