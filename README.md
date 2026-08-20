@@ -1,7 +1,7 @@
 # 🎓 EducaTurdi
 
 <p align="center">
-  <img src="./public/login/icon.svg" alt="EducaTurdi Logo" width="120px" />
+  <img src="**./public/login/icon.svg**" alt="EducaTurdi Logo" width="120px" />
 </p>
 
 <p align="center">
