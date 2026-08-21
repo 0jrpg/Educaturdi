@@ -8,7 +8,7 @@
   <strong>Um novo jeito de viver o ambiente escolar.</strong><br>
   Uma plataforma moderna, integrada e feita para aproximar pessoas e conhecimento. 
   
-  Veja a parte "LICENSE" para ter mais informações sobre reutilização e forks.
+                Veja a parte "LICENSE" para ter mais informações sobre reutilização e forks.
 </p>
 
 <p align="center">
