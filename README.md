@@ -7,8 +7,6 @@
 <p align="center">
   <strong>Um novo jeito de viver o ambiente escolar.</strong><br>
   Uma plataforma moderna, integrada e feita para aproximar pessoas e conhecimento. 
-  
-   > Veja a parte [LICENSE](https://github.com/EducaTurdi/EDUTRD/blob/main/LICENSE) para ter mais informações sobre reutilização e forks.
 </p>
 
 <p align="center">
@@ -23,7 +21,7 @@
   <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Supabase-Dark.svg" height="28" alt="Supabase">
   <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/PostgreSQL-Dark.svg" height="28" alt="PostGreSQL">
 </p>
-
+   > Veja a parte [LICENSE](https://github.com/EducaTurdi/EDUTRD/blob/main/LICENSE) para ter mais informações sobre reutilização e forks.
 ---
 
 ## 🚀 Uma nova experiência escolar
