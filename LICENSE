@@ -1,0 +1,316 @@
+```text
+MIT License
+
+Copyright (c) 2026 EducaTurdi
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+------------------------------------------------------------
+EDUCATURDI PROJECT LICENSE, NOTICES, AND TERMS
+------------------------------------------------------------
+
+IMPORTANT PRELIMINARY NOTICE
+
+This document is provided as the principal licensing and project-notice file
+for the EducaTurdi source repository. The MIT License stated above is the
+operative open-source license for software to which it applies. The extended
+sections below are intended to clarify the identity of the project, the
+scope of the software license, the treatment of non-code materials, and the
+relationship between EducaTurdi and third-party technologies.
+
+Nothing in these explanatory sections is intended to reduce, revoke, or
+otherwise contradict any right expressly granted by the MIT License with
+respect to software covered by that license.
+
+1. PROJECT IDENTITY AND PURPOSE
+
+EducaTurdi (also referred to as "EDUTRDI" or "EDUTRD") is an educational
+software project designed to provide a digital environment for students,
+teachers, administrators, and related educational workflows.
+
+The MIT License above applies to the software and source code covered by this
+repository. It is intended to allow use, study, modification, and
+redistribution of that code under the terms of the MIT License.
+
+2. COPYRIGHT AND OWNERSHIP
+
+Except where a different copyright holder, license, or attribution is
+expressly identified, original source-code contributions contained in this
+repository are copyrightable works associated with the EducaTurdi project.
+Copyright ownership is not transferred merely by downloading, cloning,
+forking, executing, modifying, or viewing this repository.
+
+The MIT License grants the permissions expressly described in its terms. It
+does not constitute a transfer of ownership of the underlying copyright,
+trademarks, names, branding, or separately protected materials.
+
+Nothing in this document should be interpreted as a claim of ownership over
+third-party software, services, frameworks, libraries, icons, fonts,
+documentation, or other materials that are merely used by or distributed
+alongside EducaTurdi.
+
+3. EDUCATURDI NAME, BRANDING, TRADEMARKS, AND VISUAL IDENTITY
+
+The name "EducaTurdi", the "EDUTRDI" and "EDUTRD" names, project logos,
+custom visual identity, original branding, and other identifying materials
+associated with the EducaTurdi project are not, by themselves, granted under
+the MIT License unless a file or notice explicitly states otherwise.
+
+Use of the source code does not grant permission to imply that a modified,
+forked, or redistributed project is an official EducaTurdi release or is
+endorsed, sponsored, or maintained by EducaTurdi.
+
+The use of the EducaTurdi name, logos, trademarks, service marks, trade dress,
+domain names, favicon designs, distinctive interface elements, and other
+brand identifiers must not be presented in a manner that falsely suggests
+official origin, endorsement, sponsorship, partnership, or affiliation.
+
+Where applicable law provides separate protection for names, trademarks, or
+trade dress, such rights remain unaffected by the MIT License.
+
+4. PROJECT ASSETS, DOCUMENTATION, AND NON-CODE CONTENT
+
+Images, icons, illustrations, educational materials, documents, text,
+branding assets, and other non-code content in this repository may have terms
+different from the source code. The MIT License should not be assumed to
+apply to such materials unless they are explicitly identified as being
+licensed under MIT or another license.
+
+This distinction is particularly relevant to educational content, visual
+assets, logos, screenshots, illustrations, original copy, downloadable
+materials, and other resources that may accompany the software.
+
+The mere presence of a file in the repository does not, by itself, establish
+that the file is subject to the MIT License. Where a separate license,
+copyright notice, attribution statement, or usage restriction exists, that
+notice should be consulted before the material is reused or redistributed.
+
+5. THIRD-PARTY SOFTWARE, SERVICES, AND LICENSES
+
+EducaTurdi may include, depend on, or integrate with third-party libraries,
+frameworks, services, icons, fonts, or other software. Such third-party
+materials remain subject to their own licenses and terms. Nothing in this
+license is intended to replace or override those licenses.
+
+Third-party technologies used by or associated with EducaTurdi may include,
+without limitation, open-source packages, hosted application services,
+authentication systems, database providers, deployment platforms, icon
+libraries, build tooling, and other external dependencies.
+
+Users and redistributors are responsible for reviewing and complying with
+the applicable terms, notices, attribution requirements, and license
+conditions of such third-party materials.
+
+6. CONFIGURATION, SECRETS, CREDENTIALS, AND USER DATA
+
+Environment variables, API keys, authentication credentials, private
+configuration, database contents, user accounts, and other sensitive or
+private data are not granted by this license. They must not be treated as
+part of the licensed source code or redistributed with the project.
+
+No permission is granted by this document to disclose, extract, publish,
+reuse, or redistribute confidential credentials, authentication material,
+private datasets, personal information, or other protected operational data
+that may be used by an installation of EducaTurdi.
+
+The presence of configuration examples or variable names in source code does
+not constitute permission to disclose the corresponding secret values.
+
+7. USER DATA, PRIVACY, AND RESPONSIBLE USE
+
+EducaTurdi may process educational, account, authentication, or other
+application data depending on the deployed configuration. The MIT License
+does not grant ownership of or unrestricted rights to personal data,
+educational records, account information, or other information belonging to
+users or third parties.
+
+Any deployment, fork, modification, or redistribution that handles personal
+or otherwise protected information is responsible for complying with the
+privacy, security, contractual, and legal requirements applicable to that
+deployment.
+
+This license should not be interpreted as authorization to collect, expose,
+sell, transfer, or otherwise misuse personal information.
+
+8. SECURITY AND RESPONSIBLE DEPLOYMENT
+
+The software is provided under the terms of the MIT License and without a
+promise that every deployment will be free of defects, vulnerabilities, or
+configuration errors. Operators are responsible for applying appropriate
+security controls, updating dependencies, protecting credentials, configuring
+authentication correctly, and securing any external services used by their
+deployment.
+
+Forks and derivative deployments should not expose private keys, service
+credentials, database secrets, or other sensitive configuration in public
+repositories, client-side bundles, logs, or documentation.
+
+9. MODIFIED, FORKED, AND REDISTRIBUTED VERSIONS
+
+The MIT License permits modification and redistribution of the covered
+software. When distributing a modified version, users are encouraged to make
+it clear that the software has been modified and to avoid presenting the
+modified version as the official EducaTurdi project.
+
+A modified version may not reasonably be represented as an official release
+of EducaTurdi merely because it is derived from this repository. Forks,
+ports, mirrors, reimplementations, and derivative deployments should use
+their own project identity where necessary to avoid confusion.
+
+Redistributors must preserve the copyright notice and MIT permission notice
+as required by the MIT License.
+
+10. OFFICIAL RELEASES AND SOURCE AUTHENTICITY
+
+The existence of a public repository, mirror, fork, package, deployment, or
+build artifact does not by itself establish that the material is an official
+EducaTurdi release.
+
+Where provenance matters, users should rely on repository history, release
+information, signed commits or tags where available, and other project
+documentation rather than assuming that every derivative copy is official.
+
+11. NO ENDORSEMENT, AFFILIATION, OR PARTNERSHIP
+
+Use, modification, or redistribution of the EducaTurdi source code does not
+create any partnership, endorsement, sponsorship, employment relationship,
+or official affiliation with EducaTurdi or its contributors.
+
+Neither the MIT License nor this notice grants permission to state or imply
+that EducaTurdi, its contributors, or its maintainers have endorsed a third-
+party product, service, organization, school, institution, individual, fork,
+or modified deployment unless such endorsement has been separately and
+explicitly authorized.
+
+12. DERIVATIVE WORKS AND COMPATIBILITY OF LICENSES
+
+The MIT License permits broad reuse of covered software. However, users are
+responsible for determining whether additional project materials, bundled
+third-party components, generated assets, or other included works carry
+separate licensing requirements.
+
+When combining EducaTurdi source code with other software, redistributors
+should ensure that the resulting distribution complies with the licenses of
+all included components.
+
+13. BUILD ARTIFACTS AND GENERATED FILES
+
+Generated files, build output, caches, deployment artifacts, dependency
+directories, and other automatically produced materials may not have the
+same licensing status as the original source code. Such materials may also
+contain generated copies of third-party software or metadata.
+
+Where build artifacts are redistributed, the applicable licenses of the
+underlying software and dependencies should be reviewed independently.
+
+14. EXTERNAL SERVICES AND DEPLOYMENT PROVIDERS
+
+EducaTurdi may be deployed through third-party infrastructure providers and
+may communicate with external services. The MIT License grants rights to the
+covered software, but it does not grant any right to use third-party
+accounts, infrastructure, domains, storage buckets, databases, APIs,
+authentication tenants, or other hosted resources belonging to the project
+or to another party.
+
+Any deployment must use its own appropriately authorized external resources
+unless separate permission has been granted.
+
+15. DOCUMENTATION AND EXAMPLES
+
+Documentation, examples, configuration snippets, comments, and instructional
+material may be provided to explain or demonstrate the software. Such
+material is not a guarantee that a configuration is suitable for every
+production environment.
+
+Examples containing placeholders, sample URLs, sample identifiers, or sample
+configuration values must not be treated as authorization to access or use
+real systems.
+
+16. WARRANTY DISCLAIMER AND LIMITATION OF LIABILITY
+
+The Software remains subject to the warranty disclaimer, limitation of
+liability, and other legal language contained in the MIT License above.
+
+Without limiting that language, users and redistributors should understand
+that EducaTurdi is provided on an "AS IS" and "AS AVAILABLE" basis to the
+full extent permitted by the MIT License and applicable law. No promise is
+made that the software will satisfy every educational, institutional,
+technical, security, performance, availability, or regulatory requirement.
+
+17. EDUCATIONAL USE NOTICE
+
+EducaTurdi is intended as educational software. A particular deployment may
+be configured for students, teachers, administrators, institutions, or other
+users. The existence of the software does not itself establish a relationship
+with any school, educational institution, governmental organization, or
+other authority.
+
+Operators remain responsible for ensuring that their deployment is
+appropriate for its intended users and complies with applicable institutional
+policies and legal requirements.
+
+18. NO GRANT OF THIRD-PARTY RIGHTS
+
+Nothing in this document grants rights to third-party names, trademarks,
+copyrighted works, personal information, confidential information, service
+accounts, credentials, domains, or infrastructure merely because such items
+are referenced, linked, integrated, or displayed by EducaTurdi.
+
+19. INTERPRETATION OF THIS NOTICE
+
+This notice is intended to provide practical clarification around the
+EducaTurdi repository. Where a conflict exists between an explanatory
+statement in this notice and an express grant or condition contained in the
+MIT License above, the terms of the MIT License control with respect to the
+software to which the MIT License applies.
+
+Where a separate third-party license governs a dependency or asset, that
+separate license remains applicable to the governed material.
+
+20. CHANGES TO THE PROJECT
+
+The EducaTurdi project may evolve over time. Individual releases, branches,
+files, or distributions may contain additional notices, attribution
+requirements, or license terms. Users should consult the licensing and
+copyright notices included with the specific version or distribution they
+use.
+
+21. CONTACT AND PROJECT INFORMATION
+
+The repository and its accompanying project documentation should be treated
+as the primary source for current project information, release information,
+and notices concerning EducaTurdi.
+
+22. FINAL NOTICE
+
+If a specific file, directory, dependency, asset, or component contains its
+own license or licensing notice, that specific notice takes precedence for
+that material where applicable.
+
+The MIT License above remains the principal open-source license for software
+to which it expressly applies. The additional EducaTurdi notices in this
+document exist to provide clarity regarding branding, non-code materials,
+third-party components, security, privacy, deployment, and project identity.
+
+By using, copying, modifying, or redistributing software covered by the MIT
+License, you agree to comply with the terms of that license. Nothing in this
+extended notice is intended to impose additional restrictions on rights that
+the MIT License expressly grants to covered software.
+```
